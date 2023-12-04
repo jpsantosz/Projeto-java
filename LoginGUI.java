@@ -73,7 +73,7 @@ public class LoginGUI {
                     tela.setVisible(false);
                 } else {
                     // Exibe uma mensagem de erro se as credenciais estiverem incorretas
-                    JOptionPane.showMessageDialog(null, "Usuário ou senha inválidos. Tente novamente.");
+                    JOptionPane.showMessageDialog(null, "Usuário ou senha inválidos. Tente novamente.",  "Erro", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });

@@ -7,25 +7,34 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class FornecedorGUI extends JFrame {
+     // Campos de entrada de dados
     private JTextField cnpjField, nomeField, logradouroField, numeroField, cidadeField, telefoneField;
+    // Componentes de seleção
     private JComboBox<String> estadoComboBox;
+    // Botões
     private JButton limparButton, enviarButton;
+    // Tabela e modelo de tabela
     private JTable dataTable;
     private DefaultTableModel tableModel;
 
+    // Construtor da classe
     public FornecedorGUI() {
+         // Configuração da janela principal
         setTitle("Cadastro de Fornecedor");
         setSize(600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
+        // Painel principal usando layout BorderLayout
         JPanel mainPanel = new JPanel(new BorderLayout());
 
+         // Painel de entrada de dados usando layout GridBagLayout
         JPanel inputPanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
         gbc.anchor = GridBagConstraints.WEST;
 
+        // Adiciona componentes ao painel de entrada de dados
         gbc.gridx = 0;
         gbc.gridy = 0;
         inputPanel.add(new JLabel("CNPJ:"), gbc);
@@ -76,6 +85,7 @@ public class FornecedorGUI extends JFrame {
         telefoneField = new JTextField(15);
         inputPanel.add(telefoneField, gbc);
 
+         // Adiciona botões ao painel de entrada de dados
         gbc.gridx = 0;
         gbc.gridy = 7;
         limparButton = new JButton("Limpar");
@@ -84,7 +94,9 @@ public class FornecedorGUI extends JFrame {
         enviarButton = new JButton("Enviar");
         inputPanel.add(enviarButton, gbc);
 
+        // Painel da tabela usando layout BorderLayout
         JPanel tablePanel = new JPanel(new BorderLayout());
+        // Criação e configuração da tabela e modelo de tabela
         tableModel = new DefaultTableModel();
         dataTable = new JTable(tableModel);
         tableModel.addColumn("CNPJ");
@@ -99,11 +111,14 @@ public class FornecedorGUI extends JFrame {
         tablePanel.add(new JLabel("Fornecedores Cadastrados:"), BorderLayout.NORTH);
         tablePanel.add(scrollPane, BorderLayout.CENTER);
 
+        // Adiciona os painéis ao painel principal
         mainPanel.add(inputPanel, BorderLayout.NORTH);
         mainPanel.add(tablePanel, BorderLayout.CENTER);
 
+        // Adiciona o painel principal ao conteúdo da janela
         getContentPane().add(mainPanel);
 
+        // Adiciona ouvintes de ação aos botões
         limparButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -119,6 +134,7 @@ public class FornecedorGUI extends JFrame {
         });
     }
 
+    // Método para limpar os campos de entrada
     private void limparCampos() {
         cnpjField.setText("");
         nomeField.setText("");
@@ -129,7 +145,9 @@ public class FornecedorGUI extends JFrame {
         telefoneField.setText("");
     }
 
+    // Método para cadastrar um fornecedor na tabela
     private void cadastrarFornecedor() {
+        // Obtém os valores dos campos de entrada
         String cnpj = cnpjField.getText();
         String nome = nomeField.getText();
         String logradouro = logradouroField.getText();
@@ -138,14 +156,16 @@ public class FornecedorGUI extends JFrame {
         String estado = (String) estadoComboBox.getSelectedItem();
         String telefone = telefoneField.getText();
 
+        // Verifica se todos os campos obrigatórios estão preenchidos
         if (!cnpj.isEmpty() && !nome.isEmpty() && !logradouro.isEmpty() && !numero.isEmpty() &&
                 !cidade.isEmpty() && !telefone.isEmpty()) {
+            // Adiciona uma nova linha à tabela com os dados do fornecedor
             tableModel.addRow(new Object[]{cnpj, nome, logradouro, numero, cidade, estado, telefone});
+            // Exibe uma mensagem de sucesso
             JOptionPane.showMessageDialog(this, "DADOS CADASTRADOS COM SUCESSO!", "Dados cadastrados", JOptionPane.INFORMATION_MESSAGE);
-
         } else {
+            // Exibe uma mensagem de erro se algum campo estiver vazio
             JOptionPane.showMessageDialog(this, "Por favor, preencha todos os campos!", "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
 }
-
