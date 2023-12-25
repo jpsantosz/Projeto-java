@@ -1,4 +1,3 @@
-/*
 Projeto
 
 Considere que você faça parte de uma equipe de desenvolvimento e esteja responsável pela
@@ -25,4 +24,3 @@ clicar no botão “ENVIAR”, os campos devem ser validados quanto ao preenchim
 Estando todos os campos preenchidos, a aplicação deve exibir a mensagem “DADOS
 CADASTRADOS COM SUCESSO!” utilizando uma caixa de diálogo e apresentar os dados
 no JTable.
-*/
